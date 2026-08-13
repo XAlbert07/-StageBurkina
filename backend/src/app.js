@@ -52,15 +52,15 @@ async function main() {
   try {
     await prisma.$connect();
 
-    console.log('✅ Connexion à la base de données réussie');
+    console.log(' Connexion à la base de données réussie');
 
     const port = process.env.PORT || 5000;
 
     app.listen(port, () => {
-      console.log(`🚀 Serveur démarré sur http://localhost:${port}`);
+      console.log(` Serveur démarré sur http://localhost:${port}`);
     });
   } catch (error) {
-    console.error('❌ Erreur de connexion à la base :', error);
+    console.error(' Erreur de connexion à la base :', error);
     process.exit(1);
   }
 }
