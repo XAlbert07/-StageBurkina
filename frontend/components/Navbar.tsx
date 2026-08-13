@@ -1,10 +1,17 @@
 'use client';
 
 import Link from 'next/link';
+
 import { useAuth } from '@/context/AuthContext';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+
+  const displayName = user
+    ? user.role === 'COMPANY'
+      ? user.profile?.companyName || user.email
+      : user.profile?.fullName || user.email
+    : '';
 
   return (
     <nav className="bg-white shadow-md">
@@ -41,6 +48,17 @@ export default function Navbar() {
                   Mes candidatures
                 </Link>
               )}
+
+             <Link
+               href="/profile"
+  className="hover:text-blue-600"
+>
+  Profil
+</Link> 
+
+              <span className="text-gray-600">
+                {displayName}
+              </span>
 
               <button
                 type="button"
