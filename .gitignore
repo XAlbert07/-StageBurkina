@@ -1,0 +1,8 @@
+# Tool-specific project files
+backend/.agents/
+backend/.claude/
+backend/.windsurf/
+
+# Accidental nano files
+backend/nano
+backend/nano.*.save

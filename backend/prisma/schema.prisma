@@ -1,0 +1,83 @@
+ // prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password      String
+  role          Role     @default(STUDENT)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  profile       Profile?
+  offers        Offer[]          // si l'utilisateur est une entreprise
+  applications  Application[]    // si l'utilisateur est un étudiant
+
+  @@map("users")
+}
+
+model Profile {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName     String?
+  phone        String?
+  avatarUrl    String?
+  // Champs spécifiques selon le rôle
+  // Pour étudiant:
+  studentInfo  String?  // formation, compétences, etc.
+  cvUrl        String?
+  // Pour entreprise:
+  companyName  String?
+  sector       String?
+  description  String?
+  website      String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("profiles")
+}
+
+model Offer {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  requirements String?
+  duration    String?
+  location    String?
+  isActive    Boolean  @default(true)
+  companyId   String
+  company     User     @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  applications Application[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("offers")
+}
+
+model Application {
+  id          String   @id @default(cuid())
+  offerId     String
+  offer       Offer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  studentId   String
+  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  message     String?
+  cvUrl       String?
+  status      String   @default("pending") // pending, accepted, rejected
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("applications")
+}
+
+enum Role {
+  STUDENT
+  COMPANY
+}
