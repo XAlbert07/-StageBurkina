@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "nodemon src/app.js",
-  "start": "node src/app.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "build": "prisma generate",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
