@@ -2,7 +2,9 @@
 
 **Stage Burkina** est un projet d'application web destiné à faciliter la consultation d'offres de stage au Burkina Faso et la mise en relation entre étudiants et entreprises.
 
-Le dépôt contient une application frontend et une API backend séparées. Le projet est présenté ici d'après le code actuellement présent dans le dépôt ; il ne faut pas le considérer comme une plateforme de production sans tests et vérifications supplémentaires.
+**Déploiement configuré dans les paramètres du dépôt : [stage-burkina.vercel.app](https://stage-burkina.vercel.app/).** La disponibilité de la démo et la connexion entre frontend et API restent à vérifier ; ce README décrit d'abord les fonctionnalités présentes dans le code.
+
+Le dépôt contient une application frontend et une API backend séparées. Il ne faut pas considérer le projet comme une plateforme de production sans tests et vérifications supplémentaires.
 
 ## Fonctionnalités présentes dans le code
 
